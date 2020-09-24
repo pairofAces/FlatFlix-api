@@ -5,15 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'pry'
+require 'rest-client'
 
+key = ENV["api_key"]
 
-count = 0 
-while Venue.all.length < 900 do
-    venue_info["_embedded"]["venues"].each do |venue_array|
-        Venue.create(name: venue_array["name"],
-        city: venue_array["city"]["name"],
-        address: venue_array["address"]["line1"])
+count = 1 
+while count < 10 do
+    begin 
+        movie_info = JSON.parse(RestClient.get("https://api.themoviedb.org/3/movie/#{count}?#{key}&language=en-US"))
+        title = movie_info["original_title"]
+        description = movie_info["overview"]
+        genres = movie_info["genres"].map { |genre| genre["name"] }
+        rating = movie_info["vote_average"]
+        runtime = movie_info["runtime"]
+
+            Movie.create!(title: title,
+            description: description,
+            genres: genres,
+            rating: rating,
+            runtime: runtime
+            )
+        count += 1
+    rescue RestClient::ExceptionWithResponse => e
+        e.response
+        count += 1
     end
-    venue_info = JSON.parse(RestClient.get("https://app.ticketmaster.com/discovery/v2/venues?&locale=*&stateCode=NY&page=#{count}" + "#{karan_api_key}"))
-    count += 1
 end
