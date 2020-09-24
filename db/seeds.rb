@@ -10,8 +10,8 @@ require 'rest-client'
 
 key = ENV["api_key"]
 
-count = 2 
-while count < 5 do
+count = 1 
+while count < 10 do
     begin 
         movie_info = JSON.parse(RestClient.get("https://api.themoviedb.org/3/movie/#{count}?#{key}&language=en-US"))
         title = movie_info["original_title"]
@@ -20,13 +20,12 @@ while count < 5 do
         rating = movie_info["vote_average"]
         runtime = movie_info["runtime"]
 
-            movie = Movie.create(title: title,
+            Movie.create!(title: title,
             description: description,
             genres: genres,
             rating: rating,
             runtime: runtime
             )
-            binding.pry
         count += 1
     rescue RestClient::ExceptionWithResponse => e
         e.response
