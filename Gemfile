@@ -7,6 +7,7 @@ gem 'figaro'
 gem 'active_model_serializers'
 gem 'pry'
 gem 'rest-client'
+gem 'rubocop'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'

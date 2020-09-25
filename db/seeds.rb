@@ -10,8 +10,8 @@ require 'rest-client'
 
 key = ENV["api_key"]
 
-count = 1 
-while count < 10 do
+count = 100 
+while count < 105 do
     begin 
         movie_info = JSON.parse(RestClient.get("https://api.themoviedb.org/3/movie/#{count}?#{key}&language=en-US"))
         title = movie_info["original_title"]
@@ -19,12 +19,14 @@ while count < 10 do
         genres = movie_info["genres"].map { |genre| genre["name"] }
         rating = movie_info["vote_average"]
         runtime = movie_info["runtime"]
+        poster = "https://image.tmdb.org/t/p/w500" + movie_info["poster_path"]
 
             Movie.create!(title: title,
             description: description,
             genres: genres,
             rating: rating,
-            runtime: runtime
+            runtime: runtime,
+            image: poster
             )
         count += 1
     rescue RestClient::ExceptionWithResponse => e
