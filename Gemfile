@@ -7,7 +7,6 @@ gem 'figaro'
 gem 'active_model_serializers'
 gem 'pry'
 gem 'rest-client'
-gem 'rubocop'
 gem 'awesome_print'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

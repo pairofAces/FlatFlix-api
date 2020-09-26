@@ -1,30 +1,30 @@
 class Api::V1::MoviesController < ApplicationController
 
 	def index
-		@movies = Movie.all
-		render json: @movies
+		movies = Movie.all
+		render json: movies
 	end
 
 	def show
-		@movie = Movie.find(params[:id])
-		render json: @movie
+		movie = Movie.find(params[:id])
+		render json: movie
 	end
 
 	def genres
-		@movies = []
-		@genres
+		movies = []
+		genre = params[:genre].capitalize
 		Movie.find_each do |movie|
-				if movie.genres.include?("Action")
-					@movies.push(movie)
-				end
+			if movie.genres.include?(genre)
+				movies.push(movie)
 			end
-		render json: @movies
+		end
+		render json: movies
 	end
 
 	private
 
 	def movie_params
-		params.require(:movie).permit(:title, :description, :genres, :rating, :runtime)
+		params.require(:movie).permit(:title, :description, :genres, :rating, :runtime, :poster, :trailer)
 	end
 
 end
