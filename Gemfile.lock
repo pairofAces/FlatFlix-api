@@ -76,6 +76,8 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     ffi (1.13.1-java)
     ffi (1.13.1-x64-mingw32)
@@ -90,6 +92,7 @@ GEM
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.2.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -239,7 +242,9 @@ DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.2)
   byebug
+  faker (~> 2.14)
   figaro
+  jwt (~> 2.2)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry
