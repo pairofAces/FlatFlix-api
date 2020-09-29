@@ -4,8 +4,10 @@ Rails.application.routes.draw do
       resources :watcheds
       resources :favorites
       resources :movies
-      resources :users
-      get 'movies/genres/:genre', to: 'movies#genres'
+        get 'movies/genres/:genre', to: 'movies#genres'
+      resources :users, only: [:create]
+        post '/login', to: 'auth#create'
+        get '/profile', to: 'users#profile'
     end
   end
 end
