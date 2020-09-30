@@ -19,6 +19,15 @@ def getPoster(movie_info)
     poster
 end
 
+def getBackground(movie_info)
+    if movie_info["backdrop_path"]
+        background = "https://image.tmdb.org/t/p/original" + movie_info["backdrop_path"]
+    else
+        background = "https://assets.brand.microsites.netflix.io/assets/493f5bba-81a4-11e9-bf79-066b49664af6_cm_1440w.png?v=41"
+    end
+    background
+end
+
 def getTrailer(movie_info)
     if movie_info["videos"]["results"].empty?
         trailer = "https://www.youtube.com/watch?v=oHg5SJYRHA0"
@@ -26,6 +35,12 @@ def getTrailer(movie_info)
         trailer = "https://www.youtube.com/watch?v=" + movie_info["videos"]["results"][0]["key"]
     end
     trailer
+end
+
+def getGenre(movie_info)
+    if movie_info[genres] == 18
+
+    end
 end
 
 count = 1
@@ -70,6 +85,7 @@ while count < 1000 do
         runtime = movie_info["runtime"]
         poster = getPoster(movie_info)
         trailer = getTrailer(movie_info)
+        background = getBackground(movie_info)
 
             Movie.create!(title: title,
             description: description,
@@ -77,7 +93,8 @@ while count < 1000 do
             rating: rating,
             runtime: runtime,
             poster: poster,
-            trailer: trailer
+            trailer: trailer,
+            background: background
             )
             
         count += 1
@@ -87,3 +104,27 @@ while count < 1000 do
         count += 1
     end
 end
+
+movie_info = JSON.parse(RestClient.get("https://api.themoviedb.org/3/trending/movie/week?#{key}&append_to_response=videos"))
+
+movie_info["results"].map do |movie|
+
+    title = movie["original_title"]
+    description = movie["overview"]
+    genres = ["Popular"]
+    rating = movie["vote_average"]
+    runtime = 120
+    poster = getPoster(movie)
+    trailer = "https://www.youtube.com/watch?v=oHg5SJYRHA0"
+    background = getBackground(movie)
+
+        Movie.create!(title: title,
+        description: description,
+        genres: genres,
+        rating: rating,
+        runtime: runtime,
+        poster: poster,
+        trailer: trailer,
+        background: background
+        )
+    end

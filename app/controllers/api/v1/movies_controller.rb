@@ -1,4 +1,5 @@
 class Api::V1::MoviesController < ApplicationController
+	skip_before_action :authorized
 
 	def index
 		movies = Movie.all
@@ -24,7 +25,7 @@ class Api::V1::MoviesController < ApplicationController
 	private
 
 	def movie_params
-		params.require(:movie).permit(:title, :description, :genres, :rating, :runtime, :poster, :trailer)
+		params.require(:movie).permit(:title, :description, :genres, :rating, :runtime, :poster, :trailer, :background)
 	end
 
 end
