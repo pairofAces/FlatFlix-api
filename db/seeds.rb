@@ -30,9 +30,9 @@ end
 
 def getTrailer(movie_info)
     if movie_info["videos"]["results"].empty?
-        trailer = "https://www.youtube.com/watch?v=oHg5SJYRHA0"
+        trailer = "oHg5SJYRHA0"
     else
-        trailer = "https://www.youtube.com/watch?v=" + movie_info["videos"]["results"][0]["key"]
+        trailer = movie_info["videos"]["results"][0]["key"]
     end
     trailer
 end
