@@ -115,7 +115,7 @@ movie_info["results"].map do |movie|
     rating = movie["vote_average"]
     runtime = 120
     poster = getPoster(movie)
-    trailer = "https://www.youtube.com/watch?v=oHg5SJYRHA0"
+    trailer = "oHg5SJYRHA0"
     background = getBackground(movie)
 
         Movie.create!(title: title,
