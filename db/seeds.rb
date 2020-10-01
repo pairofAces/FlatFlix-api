@@ -16,7 +16,7 @@ def getPoster(movie_info)
     else
         poster = "https://r9u8a7x4.stackpathcdn.com/wp-content/uploads/2016/06/netflix.jpg"
     end
-    poster
+    return poster
 end
 
 def getBackground(movie_info)
@@ -25,7 +25,7 @@ def getBackground(movie_info)
     else
         background = "https://assets.brand.microsites.netflix.io/assets/493f5bba-81a4-11e9-bf79-066b49664af6_cm_1440w.png?v=41"
     end
-    background
+    return background
 end
 
 def getTrailer(movie_info)
@@ -34,17 +34,11 @@ def getTrailer(movie_info)
     else
         trailer = movie_info["videos"]["results"][0]["key"]
     end
-    trailer
-end
-
-def getGenre(movie_info)
-    if movie_info[genres] == 18
-
-    end
+    return trailer
 end
 
 count = 1
-while count < 1000 do
+while count < 20 do
 
     case count
     when 1
@@ -87,6 +81,7 @@ while count < 1000 do
         trailer = getTrailer(movie_info)
         background = getBackground(movie_info)
 
+        # byebug
             Movie.create!(title: title,
             description: description,
             genres: genres,

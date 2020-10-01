@@ -1,4 +1,4 @@
 class Movie < ApplicationRecord
-	belongs_to :favorite, optional: true
-	belongs_to :watched, optional: true
+	has_many :favorites
+	has_many :watcheds
 end

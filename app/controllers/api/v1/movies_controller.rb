@@ -19,7 +19,7 @@ class Api::V1::MoviesController < ApplicationController
 				movies.push(movie)
 			end
 		end
-		render json: movies
+		render json: movies.shuffle
 	end
 
 	private

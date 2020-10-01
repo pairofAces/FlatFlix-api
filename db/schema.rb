@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 2020_09_30_155045) do
 
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "movie_id"
+    t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_favorites_on_movie_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -46,12 +47,15 @@ ActiveRecord::Schema.define(version: 2020_09_30_155045) do
 
   create_table "watcheds", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "movie_id"
+    t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_watcheds_on_movie_id"
     t.index ["user_id"], name: "index_watcheds_on_user_id"
   end
 
+  add_foreign_key "favorites", "movies"
   add_foreign_key "favorites", "users"
+  add_foreign_key "watcheds", "movies"
   add_foreign_key "watcheds", "users"
 end

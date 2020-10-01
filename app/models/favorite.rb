@@ -1,4 +1,4 @@
 class Favorite < ApplicationRecord
   belongs_to :user
-  has_many :movies
+  belongs_to :movies
 end
