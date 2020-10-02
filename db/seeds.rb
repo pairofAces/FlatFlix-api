@@ -9,12 +9,13 @@ require 'pry'
 require 'rest-client'
 
 key = ENV["api_key"]
+ff = ENV["flatflix"]
 
 def getPoster(movie_info)
     if movie_info["poster_path"]
         poster = "https://image.tmdb.org/t/p/w500" + movie_info["poster_path"]
     else
-        poster = "https://r9u8a7x4.stackpathcdn.com/wp-content/uploads/2016/06/netflix.jpg"
+        poster = "https://i.postimg.cc/x1wvbH9y/output-onlinepngtools.jpg"
     end
     return poster
 end
@@ -23,7 +24,7 @@ def getBackground(movie_info)
     if movie_info["backdrop_path"]
         background = "https://image.tmdb.org/t/p/original" + movie_info["backdrop_path"]
     else
-        background = "https://assets.brand.microsites.netflix.io/assets/493f5bba-81a4-11e9-bf79-066b49664af6_cm_1440w.png?v=41"
+        background = "https://i.postimg.cc/x1wvbH9y/output-onlinepngtools.jpg"
     end
     return background
 end
@@ -38,7 +39,7 @@ def getTrailer(movie_info)
 end
 
 count = 1
-while count < 20 do
+while count < 100 do
 
     case count
     when 1
