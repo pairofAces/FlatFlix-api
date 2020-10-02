@@ -7,7 +7,7 @@ class Api::V1::FavoritesController < ApplicationController
 	end
 
 	def index
-		favorite = Favorite.all
+		favorite = Favorite.all(:select => 'user_id')
 		render json: favorite
 	end
 

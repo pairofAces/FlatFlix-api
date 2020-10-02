@@ -1,8 +1,13 @@
 class Api::V1::UsersController < ApplicationController
-	skip_before_action :authorized, only: [:create, :favorites]
+	skip_before_action :authorized, only: [:create, :favorites, :index]
 
 	def profile
 		render json: { user: UserSerializer.new(current_user) }, status: :accepted
+	end
+
+	def index
+		users = User.all
+		render json: users
 	end
 
 	def create
@@ -18,13 +23,14 @@ class Api::V1::UsersController < ApplicationController
 
 	def favorites
 		user = User.find(params[:id])
+		user_favorites = user.favorites.uniq { |movie| movie.movie_id }
 		favorites = user.favorites.map do |favorite|
 			if favorite.movie_id != nil
 				Movie.find(favorite.movie_id)
 			end
 		end
 
-		render json: favorites.uniq
+		render json: { movies: favorites.uniq, favorites: user_favorites } 
 	end
 
 	private
