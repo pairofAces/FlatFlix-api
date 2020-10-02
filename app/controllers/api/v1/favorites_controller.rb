@@ -6,9 +6,9 @@ class Api::V1::FavoritesController < ApplicationController
 		render json: favorite, status: :created
 	end
 
-	def index
-		favorite = Favorite.all(:select => 'user_id')
-		render json: favorite
+	def destroy
+		favorite = Favorite.find(params[:id])
+		favorite.delete
 	end
 
 	private

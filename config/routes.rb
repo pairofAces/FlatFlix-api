@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :favorites
       resources :movies
         get 'movies/genres/:genre', to: 'movies#genres'
-      resources :users, only: [:create, :index]
+      resources :users, only: [:create, :index, :show]
         post '/login', to: 'auth#create'
         get '/profile', to: 'users#profile'
         get 'user/:id/favorites', to: 'users#favorites'
