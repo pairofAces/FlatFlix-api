@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  # database: <%= ENV['DATABASE_URL'] %>
   database: FlatFlix_production
   username: FlatFlix
   password: <%= ENV['FLATFLIX_DATABASE_PASSWORD'] %>
