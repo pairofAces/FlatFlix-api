@@ -39,7 +39,7 @@ def getTrailer(movie_info)
 end
 
 count = 1
-while count < 100 do
+while count < 500 do
 
     case count
     when 1
