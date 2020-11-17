@@ -123,4 +123,4 @@ movie_info["results"].map do |movie|
         trailer: trailer,
         background: background
         )
-    end
+end
